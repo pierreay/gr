@@ -122,7 +122,7 @@ function discover(req, res, next) {
       gitPaths = [],
       append = '';
 
-  var maxDepth = 5;
+  var maxDepth = 99;
   var depth = 0;
   var nextPaths = [];
   var i = 0;
