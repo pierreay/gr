@@ -69,7 +69,7 @@ module.exports = function(req, res, next) {
         console.log(
           style(dirname, 'gray') +
           style(path.basename(cwd), 'white') + pad(dirname + path.basename(cwd), pathMaxLen) + ' ' +
-          branchName + pad(branchName, 15) + ' ' +
+          branchName + pad(branchName, 25) + ' ' +
           style(modified, (lines.length > 0 ? 'red' : 'green')) + pad(modified, 14) +
           behind + pad(behind, 14) +
           tags.map(function(s) { return '@' + s; }).join(' ')
