@@ -122,9 +122,13 @@ function discover(req, res, next) {
       gitPaths = [],
       append = '';
 
-  // TODO: Make the maxDepth parameter editable through a command-line argument
-  // and set default to 5.
   var maxDepth = 99;
+  if (req.argv[1] > 0) {
+      maxDepth = req.argv[1]
+      console.log('Requested max depth = ' + maxDepth)
+  } else {
+      console.log('Default max depth = ' + maxDepth)
+  }
   var depth = 0;
   var nextPaths = [];
   var i = 0;

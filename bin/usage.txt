@@ -45,8 +45,9 @@ gr tag ..
   add <t> <path>    Add a tag to <path>
   rm <t> <path>     Remove a tag from <path>
 
-gr tag discover <paths> Auto-discover git paths under  the list of <paths>
-                    (If omitted, <paths> defaults to ~/)
+gr tag discover <paths> [maxdepth] Auto-discover git paths under the list of <paths>
+                                   (If omitted, <paths> defaults to ~/)
+                                   Optionally, you can specify a maximum directory depth for the scanner
 
 gr tag list    List all known repositories, grouped by their tags
 gr list        List all known repositories
