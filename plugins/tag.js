@@ -159,7 +159,8 @@ function discover(req, res, next) {
     } catch (e) {
       // ignore ENOENT (can occur with bad symlinks)
       // and EACCESS (can occur with superuser-permission paths)
-      if (e.code !== 'ENOENT' && e.code !== 'EACCES') {
+      // and ENAMETOOLONG (can occur super long paths or file names)
+      if (e.code !== 'ENOENT' && e.code !== 'EACCES' && e.code !== 'ENAMETOOLONG') {
         throw e;
       }
     }
