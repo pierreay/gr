@@ -81,6 +81,8 @@ Gr.prototype.parseTargets = function(argv) {
       targetPath,
       first;
 
+  // Register a path (e.g. read from the config file using a tag) to the
+  // self.directories variables. Sanitize input by replacing "\ " by " ".
   function pushDir(path) {
     self.directories.push(path.replace(/\\ /g, ' '));
   }
@@ -166,18 +168,21 @@ Gr.prototype.exec = function(argv, exit) {
   this.dirUnique();
   this.dirExist();
 
-  // if no paths, just push one task
-  if (this.directories.length === 0) {
-    tasks.push(function(onDone) {
-      self.handle('', argv, onDone, exit);
-    });
-  } else {
+  // Don't push any task if there is no valid directories.
+  // XXX: The original maintainer pushed one task with an empty string as
+  // "cwd". Why?
+  if (this.directories.length != 0) {
     this.directories.forEach(function(cwd) {
       tasks.push(function(onDone) {
         self.handle(cwd, argv, onDone, exit);
       });
     });
   }
+  // NOTE: Enable this piece of code to warn when supplying a tag with no
+  // existing paths.
+  // else {
+  //     log.warn("No existing paths for supplied tag!")
+  // }
 
   function series(task) {
     if (task) {
